@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Proffesion Neural Network" type="google-app-engine-deploy" factoryName="Google App Engine Deployment" editBeforeRun="true" server-name="Google App Engine">
+    <deployment type="artifact" name="ProforientWeb:war exploded" />
+    <RunnerSettings RunnerId="DeployToServer" />
+    <ConfigurationWrapper RunnerId="DeployToServer" />
+    <method>
+      <option name="BuildArtifacts" enabled="true">
+        <artifact name="ProforientWeb:war exploded" />
+      </option>
+    </method>
+  </configuration>
+</component>
