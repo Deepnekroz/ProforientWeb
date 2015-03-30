@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * Created by dmitry on 28.03.15.
- */
 public class Combo extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,10 +23,11 @@ public class Combo extends HttpServlet{
         net.initialize();
         System.out.println("studying...");
         net.backPropagation();
+        resp.setContentType("text/html");
         PrintWriter out=resp.getWriter();
         for(int i=0;i<5;i++){
             net.run(people[i]);
-            out.println("\n" + net.giveAnswerExtended() + "\n");
+            out.println("<hr />" + net.giveAnswerExtended() + "<hr />");
         }
         out.close();
 

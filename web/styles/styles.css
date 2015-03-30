@@ -41,12 +41,12 @@ html, body{
     width:20vw;
 }
 .result{
-    text-align: center;
+    text-align: left;
     position: relative;
     background: rgba(0, 0, 0, 0.07);
     border: 1px solid rgba(0, 0, 0, 0.22);
-    width:200px;
+    width:300px;
     left:50%;
-    margin-left:-100px;
+    margin-left:-150px;
     min-height: 40px;
 }

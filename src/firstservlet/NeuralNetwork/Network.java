@@ -3,18 +3,17 @@ package firstservlet.NeuralNetwork;
 
 
 
+import java.io.PrintWriter;
 import java.util.Arrays;
 
-/**
- * Created by dmitry on 20.03.15.
- */
+
 public class Network {
     double[]  enters;
     double[]  inner;
     volatile double[]  outer;
-    private static int iteratorMy=0;
-    double[][] eTOinner;
-    double[][] iTOouter;
+    private int iteratorMy=0;
+    volatile double[][] eTOinner;
+    volatile double[][] iTOouter;
     double SP = 0.4; //STUDY SPEED
 
     public double[] getOuter() {
@@ -77,7 +76,6 @@ public class Network {
         double innerErrors[]=new double[inner.length];
         double globalError=0;
 
-
         do{
             globalError=0;
             for(int i = 0; i<Examples.patterns.length;i++) {
@@ -125,7 +123,8 @@ public class Network {
         //SP*=0.9;
         iteratorMy++;
 
-          // System.out.println("Global error: "+globalError+" ,and iterator "+iteratorMy);
+          System.out.println("Global error: "+globalError+" ,and iterator "+iteratorMy);
+
         }while(globalError>1.5 && iteratorMy<2000);
     }
     public String giveAnswerExtended(){
@@ -137,9 +136,35 @@ public class Network {
                 if(newArray[i]==outer[j])
                     professionsDescOrder[i]=j;
         String result="";
-        for(int i=0;i<professionsDescOrder.length;i++)
-            result+=(i+1)+". "+Person.PROFESSION_NAMES[professionsDescOrder[i]]+" ("+(float)outer[professionsDescOrder[i]]*100+"%)\n";
+        double k = 1/outer[professionsDescOrder[4]];
+        for(int i=0, j=4;i<professionsDescOrder.length;i++,j--)
+            result+="<b>"+(i+1)+".</b> "+Person.PROFESSION_NAMES[professionsDescOrder[j]]+" ("+(float)(outer[professionsDescOrder[j]]*k*100)+"%)<br />";
         return result;
+    }
+    public void saveWeight(String filePathE, String filePathO){
+        try {
+            PrintWriter firstOut = new PrintWriter(filePathE);
+            for(int i = 0; i<eTOinner.length;i++){
+                String line = "";
+                for(int j = 0; j<eTOinner[0].length;j++){
+                    line+=eTOinner[i][j]+" ";
+                }
+                firstOut.println(line);
+            }
+            firstOut.close();
+
+            PrintWriter secondOut = new PrintWriter(filePathO);
+            for(int i = 0; i<iTOouter.length;i++){
+                String line = "";
+                for(int j = 0; j<iTOouter[0].length;j++){
+                    line+=iTOouter[i][j]+" ";
+                }
+                secondOut.println(line);
+            }
+            secondOut.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public String giveAnswer(){

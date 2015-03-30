@@ -10,7 +10,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>VK post's likes parser</title>
+    <title>Vlasenko profession orientation</title>
     <link rel="stylesheet" type="text/css" href="./styles/styles.css">
     <script type="text/javascript" src="scripts/jquery.js"></script>
     <script type="text/javascript" src="scripts/1.js"></script>

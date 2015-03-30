@@ -1,8 +1,6 @@
 package firstservlet.NeuralNetwork;
 
-/**
- * Created by dmitry on 20.03.15.
- */
+
 public class MyMath {
     public static double sigmoidalFunction(double x){
         return 1/(1+Math.exp(-x));

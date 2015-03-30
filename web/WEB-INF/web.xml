@@ -19,6 +19,7 @@
         <servlet-name>combo</servlet-name>
         <servlet-class>firstservlet.Combo</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>Proforientation</servlet-name>
         <url-pattern>/profession/*</url-pattern>
@@ -31,4 +32,5 @@
         <servlet-name>combo</servlet-name>
         <url-pattern>/combo/*</url-pattern>
     </servlet-mapping>
+
 </web-app>

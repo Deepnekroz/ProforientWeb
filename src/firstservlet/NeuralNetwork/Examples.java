@@ -4,9 +4,7 @@ import java.util.Scanner;
 
 import static firstservlet.NeuralNetwork.Person.*;
 
-/**
- * Created by dmitry on 19.03.15.
- */
+
 public class Examples {
     public static final int[] ALGORITHMIST = {
             STYLE_BUSINESS,

@@ -12,15 +12,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-/**
- * Created by dmitry on 28.03.15.
- */
+
 public class PeopleForProfession extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //RETURNS PROFESSION MATCH IN NATURAL ORDER
 
-
+        PrintWriter out = resp.getWriter();
         Network net = new Network(new int[11], 40, 5);
         net.initialize();
         System.out.println("studying...");
@@ -42,8 +40,14 @@ public class PeopleForProfession extends HttpServlet {
         net.run(Examples.TEACHER);
         double[] thirdManResult =  Arrays.copyOf(net.getOuter(), net.getOuter().length);
         peoplesResults[2]=thirdManResult;
-
-        int requiredProfessionId = Integer.parseInt(req.getParameter("professionId"));
+        int requiredProfessionId;
+        try {
+            requiredProfessionId = Integer.parseInt(req.getParameter("professionId"));
+        }catch(NumberFormatException e){
+            e.printStackTrace();
+            out.println("No 'professionId' [0-4] passed");
+            return;
+        }
         double[] requiredProfessionVector = new double[3];
         for(int i = 0; i<peoplesCount;i++)
             for(int j = 0; j<5;j++)
@@ -62,10 +66,8 @@ public class PeopleForProfession extends HttpServlet {
             }
         }
 
-        System.out.println(Arrays.toString(peoplesOrder));
 
-        PrintWriter out = resp.getWriter();
-        out.println("Peopls matches for "+ Person.PROFESSION_NAMES[requiredProfessionId]+": (first - best)");
+        out.println("People matches for "+ Person.PROFESSION_NAMES[requiredProfessionId]+": (first is best)");
         for(int i = peoplesCount-1, j = 1; i>=0; i--, j++)
             out.println(j+"."+names[peoplesOrder[i]]+" ("+(float)(requiredProfessionVectorSorted[i]/1)*100+"%)");
 

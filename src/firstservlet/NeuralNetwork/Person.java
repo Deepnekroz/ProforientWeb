@@ -1,8 +1,6 @@
 package firstservlet.NeuralNetwork;
 
-/**
- * Created by dmitry on 27.03.15.
- */
+
 public class Person {
 
     //STYLE
