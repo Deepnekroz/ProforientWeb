@@ -1,2 +1,2 @@
 University lab work.
-Choosing persone's profession via artificial neural network.
+Choosing profession via artificial neural network.
